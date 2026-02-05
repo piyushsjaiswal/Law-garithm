@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request, jsonify
 import os
 import uuid
@@ -117,4 +118,5 @@ def chat():
         return jsonify({'error': f"An error occurred during chat: {str(e)}"}), 500
 
 if __name__ == '__main__':
+
     app.run(debug=True, port=5000)

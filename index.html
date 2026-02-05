@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Personal Document Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Law-gorithms : Your AI Legal Assistant</h1>
+            <p>Upload a legal document, get summary, and chat using voice or text.</p>
+        </header>
+
+        <!-- Upload Section -->
+        <div class="card" id="upload-section">
+            <h2>1. Let's Get Your Document</h2>
+            <form id="upload-form">
+                <div class="form-group">
+                    <label>Select a file:</label>
+                    <input type="file" id="file-input" name="file"
+                           accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Translated Summary Language</label>
+                    <select id="language-select" name="language">
+                        <option value="Hindi">Hindi</option>
+                        <option value="Marathi">Marathi</option>
+                        <option value="Tamil">Tamil</option>
+                        <option value="Telugu">Telugu</option>
+                        <option value="English">English</option>
+                    </select>
+                </div>
+
+                <button type="submit" id="upload-button">Analyze Document</button>
+            </form>
+
+            <div id="loader" class="loader" style="display:none;"></div>
+            <p id="upload-error" class="error-message"></p>
+        </div>
+
+        <!-- Summary -->
+        <div class="card" id="results-section" style="display:none;">
+            <h2>2. Summary</h2>
+            <div class="summary-container">
+                <div class="summary-box">
+                    <h3>English</h3>
+                    <pre id="summary-output"></pre>
+                </div>
+                <div class="summary-box">
+                    <h3 id="translated-summary-title"></h3>
+                    <pre id="translated-summary-output"></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat -->
+        <div class="card" id="chat-section" style="display:none;">
+            <h2>3. Chat with Voice Support</h2>
+
+            <!-- Voice Controls -->
+            <div class="form-group">
+                <label>Chat Language</label>
+                <select id="chat-language">
+                    <option value="en-IN">English</option>
+                    <option value="hi-IN">Hindi</option>
+                    <option value="mr-IN">Marathi</option>
+                    <option value="ta-IN">Tamil</option>
+                    <option value="te-IN">Telugu</option>
+                </select>
+
+                <label>
+                    <input type="checkbox" id="voice-toggle" checked>
+                    🔊 Voice Output
+                </label>
+            </div>
+
+            <div id="chat-window">
+                <div class="chat-message bot">
+                    <p>Hi! You can type or use the mic 🎤</p>
+                </div>
+            </div>
+
+            <div id="chat-loader" class="loader chat-loader" style="display:none;">
+                <p>...</p>
+            </div>
+
+            <form id="chat-form">
+                <input type="text" id="chat-input"
+                       placeholder="Ask by typing or speaking…" required>
+                <button type="button" id="mic-btn">🎤</button>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
